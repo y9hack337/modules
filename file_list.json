@@ -1,1 +1,14 @@
-[]
+[
+  "Gemini.py",
+  "example.py",
+  "filters.py",
+  "flux.py",
+  "gen.py",
+  "glitch.py",
+  "nsfwxl.py",
+  "quotes.py",
+  "randomkomaru.py",
+  "shot.py",
+  "tts.py",
+  "vtt.py"
+]
