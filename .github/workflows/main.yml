@@ -1,4 +1,4 @@
-name: Generate Python File List
+name: Generate Python File List JSON
 
 on:
   push:
@@ -17,10 +17,10 @@ jobs:
           find . -type f -name "*.py" -not -path "./.git/*" -print0 | \
           sed 's#^\./##' | \
           sort -z | \
-          xargs -0 printf "%s\n" > file_list.txt
+          jq -R -s 'split("\n")[:-1]' > file_list.json
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "chore: Update python file list"
-          file_pattern: file_list.txt
+          commit_message: "chore: Update python file list JSON"
+          file_pattern: file_list.json
