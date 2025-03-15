@@ -16,10 +16,11 @@ jobs:
         run: |
           FILE_LIST=$(find . -type f -name "*.py" -not -path "./.git/*" | \
                       sed 's#^\./##' | \
-                      sed 's/\.py$//' | \ # Remove .py extension
+                      sed 's/\.py$//' | \
                       sort)
-
+      
           echo "$FILE_LIST" | jq -R -s 'split("\n")[:-1]' > file_list.json
+
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v4
