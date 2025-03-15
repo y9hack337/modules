@@ -1,4 +1,4 @@
-name: Generate File List
+name: Generate Python File List
 
 on:
   push:
@@ -12,12 +12,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Generate file list
+      - name: Generate python file list
         run: |
-          find . -type f -not -path "./.git/*" -print0 | sort -z | xargs -0 printf "%s\n" > file_list.txt
+          find . -type f -name "*.py" -not -path "./.git/*" -print0 | \
+          sed 's#^\./##' | \
+          sort -z | \
+          xargs -0 printf "%s\n" > file_list.txt
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "chore: Update file list"
+          commit_message: "chore: Update python file list"
           file_pattern: file_list.txt
