@@ -1,14 +1,12 @@
-./.github/workflows/main.yml
 ./Gemini.py
 ./example.py
-./file_list.txt
 ./filters.py
 ./flux.py
 ./gen.py
 ./glitch.py
-./nsfwxl.py
 ./quotes.py
 ./randomkomaru.py
 ./shot.py
 ./tts.py
 ./vtt.py
+nsfwxl.py
