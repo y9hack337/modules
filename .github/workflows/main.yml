@@ -16,6 +16,7 @@ jobs:
         run: |
           FILE_LIST=$(find . -type f -name "*.py" -not -path "./.git/*" | \
                       sed 's#^\./##' | \
+                      sed 's/\.py$//' | \ # Remove .py extension
                       sort)
 
           echo "$FILE_LIST" | jq -R -s 'split("\n")[:-1]' > file_list.json
