@@ -1,4 +1,5 @@
 from pyrogram import Client, filters
+from pyrogram.types import Message
 import configparser
 import edge_tts, asyncio
 from pydub import AudioSegment
@@ -38,7 +39,7 @@ async def text_to_ogg(text: str, man: bool) -> BytesIO:
 
 def register_commands(app):
     @app.on_message(filters.me & filters.command(["tts","ттс","ееы"], prefixes=prefix_userbot))
-    async def tts(client, message):
+    async def tts(client: Client, message: Message):
         reply = message.reply_to_message
         if reply and reply.text:
             user = reply.text
@@ -48,7 +49,7 @@ def register_commands(app):
         await client.send_voice(message.chat.id, voice,reply_to_message_id=message.id)
 
     @app.on_message(filters.me & filters.command(["ttsg","ттсг","ееып"], prefixes=prefix_userbot))
-    async def ttsg(client, message):
+    async def ttsg(client: Client, message: Message):
         reply = message.reply_to_message
         if reply and reply.text:
             user = reply.text.split(" ",1)[1]
