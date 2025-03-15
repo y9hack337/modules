@@ -1,10 +1,10 @@
 # requires: google-genai
 
 from pyrogram import Client, filters
+from pyrogram.types import Message
 import configparser
 from google import genai
 from google.genai import types as genai_types
-
 import os
 
 commands = [
@@ -39,7 +39,7 @@ else:
 
 def register_commands(app):
     @app.on_message(filters.me & filters.command(["gmn", "гмн", "пьт", "gemini", "gmns", "гмнс"], prefixes=prefix_userbot))
-    async def gemini(client, message):
+    async def gemini(client: Client, message: Message):
         global model
         
         if message.text and len(message.text.split(" ")) == 3:
