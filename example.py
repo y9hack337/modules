@@ -22,7 +22,7 @@ prefix_userbot = config['HACK337_USERBOT']['prefix_userbot'].split(',')
 def register_commands(app):
     @app.on_message(filters.me & filters.command("hi", prefixes=prefix_userbot))
     async def hi_module(client: Client, message: Message):
-        await message.edit("Привет!")
+        await message.edit("Привет! хуй")
     
     @app.on_message(filters.me & filters.command("bye", prefixes=prefix_userbot))
     async def bye_module(client: Client, message: Message):
