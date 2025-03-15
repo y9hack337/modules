@@ -14,10 +14,11 @@ jobs:
 
       - name: Generate python file list
         run: |
-          find . -type f -name "*.py" -not -path "./.git/*" -print0 | \
-          sed 's#^\./##' | \
-          sort -z | \
-          jq -R -s 'split("\n")[:-1]' > file_list.json
+          FILE_LIST=$(find . -type f -name "*.py" -not -path "./.git/*" | \
+                      sed 's#^\./##' | \
+                      sort)
+
+          echo "$FILE_LIST" | jq -R -s 'split("\n")[:-1]' > file_list.json
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v4
