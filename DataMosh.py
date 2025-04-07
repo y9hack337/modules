@@ -108,7 +108,7 @@ def register_commands(app):
 
         subprocess.call(f'ffmpeg -loglevel quiet -y -i {fn}2.avi {fn}2.mp4', shell=True)
         try:
-            await client.send_video(message.chat.id, video=fn+"2.mp4", video_note=reply.video_note)
+            await client.send_video(message.chat.id, video=fn+"2.mp4")
         except Exception as e:
             logger.error(f"Error sending video: {e}")
             await message.edit("".join([ random.choice(html).format(ch) for ch in strings["error"]]))
