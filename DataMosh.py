@@ -28,8 +28,9 @@ strings = {
 
 html = ["<b>{}<b>", "<code>{}</code>", "<i>{}</i>", "<del>{}</del>", "<u>{}</u>", '<a href="https://bruh.moment">{}</a>']
 
+# Define the register_commands function outside of any class or conditional
 def register_commands(app):
-    @app.on_message(filters.me & filters.command(["datamosh", "dm", "вь"], prefixes=prefix_userbot))
+    @app.on_message(filters.me & filters.command("datamosh", prefixes=prefix_userbot))
     async def datamosh_module(client: Client, message: Message):
         """Datamosh effect to video. .datamosh lvl: int <reply to video>"""
         fn = "if_you_see_it_then_delete_it"
