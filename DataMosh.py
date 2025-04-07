@@ -69,15 +69,15 @@ def register_commands(app):
         await message.edit("".join([ random.choice(html).format(ch) for ch in strings["processing"]]))
         
         try:
-            await reply.download(fn + "1.mp4")
+            file_vid = await reply.download(fn + "1.mp4")
         except Exception as e:
             logger.error(f"Error downloading video: {e}")
             await message.edit("".join([ random.choice(html).format(ch) for ch in strings["error"]]))
-            os.system(f"rm -f {fn}*")
+            os.system(f"rm -f {file_vid}")
             return
             
 
-        subprocess.call(f'ffmpeg -loglevel quiet -y -i {fn}1.mp4 -crf 0 -bf 0 {fn}1.avi', shell=True)
+        subprocess.call(f'ffmpeg -loglevel quiet -y -i {file_vid} -crf 0 -bf 0 {fn}1.avi', shell=True)
         try:
             with open(fn+'1.avi', 'rb') as _f, open(fn+'2.avi', 'wb') as f_:
                 frs = _f.read().split(b'00dc')
