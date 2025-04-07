@@ -30,7 +30,7 @@ html = ["<b>{}<b>", "<code>{}</code>", "<i>{}</i>", "<del>{}</del>", "<u>{}</u>"
 
 # Define the register_commands function outside of any class or conditional
 def register_commands(app):
-    @app.on_message(filters.me & filters.command("datamosh", prefixes=prefix_userbot))
+    @app.on_message(filters.me & filters.command(["datamosh", "dm", "вь"], prefixes=prefix_userbot))
     async def datamosh_module(client: Client, message: Message):
         """Datamosh effect to video. .datamosh lvl: int <reply to video>"""
         fn = "if_you_see_it_then_delete_it"
@@ -38,7 +38,7 @@ def register_commands(app):
         if not reply:
             await message.edit("".join([ random.choice(html).format(ch) for ch in strings["reply"]]))
             return
-        if not reply.video and not reply.video_note:
+        if not reply.video and not reply.video_note and not reply.animation:
             await message.edit("".join([ random.choice(html).format(ch) for ch in strings["reply"]]))
             return
 
