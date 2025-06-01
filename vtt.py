@@ -88,7 +88,7 @@ def register_commands(app):
                     
                     for chunk in split_text(response_text):
                         if i==1:
-                            await await message.edit(chunk)
+                            await message.edit(chunk)
                         else:
                             await reply.reply_text(chunk, reply_to_message_id=reply.id)
                         i+=1
