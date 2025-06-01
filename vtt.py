@@ -84,9 +84,14 @@ def register_commands(app):
                         ])
                     
                     response_text = response.text
+                    i=1
                     
                     for chunk in split_text(response_text):
-                        await reply.reply_text(chunk, reply_to_message_id=reply.id)
+                        if i==1:
+                            await await message.edit(chunk)
+                        else:
+                            await reply.reply_text(chunk, reply_to_message_id=reply.id)
+                        i+=1
         except Exception as e:
             await message.edit_text(f"```Ошибка!\n{str(e)}\n```")
 
